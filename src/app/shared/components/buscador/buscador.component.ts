@@ -46,11 +46,7 @@ export class BuscadorComponent implements OnInit {
       }
     }
 
-<<<<<<< HEAD
     if (value && value.length <= 1) {
-=======
-    if (value && value.length <= 1) { //Condicion para que la página vuelva a su estado original luego de borrar los datos de la barra de busqueda
->>>>>>> a6cf278e4849fc5ec0251e310f1adb1cf14e833e
       this.router.navigate(['/']);
     }
   }
