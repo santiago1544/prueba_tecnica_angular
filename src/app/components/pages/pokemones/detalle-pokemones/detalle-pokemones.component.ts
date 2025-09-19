@@ -12,7 +12,7 @@ import { PokemonService } from '@app/shared/services/pokemon.service';
   styleUrls: ['./detalle-pokemones.component.scss']
 })
 export class DetallePokemonesComponent implements OnInit {
-  pokemon$: Observable<Pokemon>; // Ahora claramente un solo Pokemon
+  pokemon$: Observable<Pokemon>; 
 
   constructor(
     private route: ActivatedRoute,

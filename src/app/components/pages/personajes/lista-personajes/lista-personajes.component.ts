@@ -15,8 +15,8 @@ export class ListaPersonajesComponent implements OnInit {
   personajes: Personaje[] = [];
   displayedColumns: string[] = ['imagen', 'nombre', 'especie', 'estado', 'ubicacion'];
 
-  totalPersonajes = 0;        // count total que devuelve la API (info.count)
-  pageSize = 20;              // valor inicial (puedes poner 5, 10 o 20)
+  totalPersonajes = 0;        // count total que devuelve la API
+  pageSize = 20;              // valor inicial
   pageIndex = 0;              // índice de la "subpágina" en mat-paginator (base 0)
   query!: string;
 
@@ -32,14 +32,12 @@ export class ListaPersonajesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // 👇 Escuchar SIEMPRE los cambios en queryParams
     this.route.queryParams.subscribe(params => {
       this.query = params['q'] || '';
-      this.pageIndex = 0; // cuando hay nueva búsqueda, reiniciamos paginador
+      this.pageIndex = 0; // cuando hay nueva búsqueda, reiniciar paginador
       this.loadData();
     });
 
-    // Si entras sin queryParams, igual cargamos los datos
     this.loadData();
   }
 
@@ -53,7 +51,7 @@ export class ListaPersonajesComponent implements OnInit {
   }
 
   /**
-   * Evento del paginador (pageIndex base 0, pageSize)
+   * Evento del paginador 
    */
   onPageChange(event: PageEvent): void {
   this.pageSize = Math.min(event.pageSize, 20);

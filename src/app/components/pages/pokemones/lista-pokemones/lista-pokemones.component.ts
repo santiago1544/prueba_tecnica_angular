@@ -16,7 +16,7 @@ export class ListaPokemonesComponent implements OnInit {
   displayedColumns: string[] = ['imagen', 'nombre', 'tipos', 'experiencia'];
 
   totalPokemones = 0;
-  pageSize = 20;     // cuántos por página
+  pageSize = 20;
   pageIndex = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

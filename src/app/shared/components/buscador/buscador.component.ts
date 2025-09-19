@@ -27,7 +27,7 @@ export class BuscadorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Nos suscribimos a los cambios del toggle
+    //consumir el servicio del toggle
     this.viewToggleService.currentView$.subscribe((view) => {
       this.currentView = view;
     });

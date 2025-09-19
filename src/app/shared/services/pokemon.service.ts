@@ -10,7 +10,7 @@ import { environment1 } from '@environment/enviroment';
 export class PokemonService {
   constructor(private http: HttpClient) {}
 
-  // Lista de pokemones (solo nombre y url)
+  // Lista de pokemones
   getAllPokemons(): Observable<any> {
     return this.http.get<any>(`${environment1.urlAPI}?limit=10000&offset=0`);
   }
