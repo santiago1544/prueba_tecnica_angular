@@ -5,6 +5,20 @@
         Rick y Morty || Poke <span class="text-danger">API</span>
       </a>
 
+      <!-- Botón toggler responsive -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Contenido colapsable -->
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
@@ -13,7 +27,7 @@
         </ul>
 
         <!-- Selector de vista -->
-        <div class="me-3">
+        <div class="me-3 mb-2 mb-md-0">
           <select class="form-select" (change)="onToggleView($event)">
             <option value="personajes">Personajes</option>
             <option value="pokemones">Pokemones</option>
@@ -21,7 +35,7 @@
         </div>
 
         <!-- Barra de búsqueda -->
-        <div class="col-xs-12 col-sm-12 col-md-6">
+        <div class="col-12 col-md-6">
           <app-buscador></app-buscador>
         </div>
       </div>

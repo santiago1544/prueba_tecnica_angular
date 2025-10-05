@@ -38,8 +38,8 @@ export class ListaPokemonesComponent implements OnInit {
     });
   }
 
-  /**
-   * Cargar los pokemones desde la API
+  /*
+   Cargar los pokemones desde la API
    */
   cargarPokemones(): void {
     this.pokemonService.getAllPokemons().subscribe(data => {
@@ -103,8 +103,8 @@ export class ListaPokemonesComponent implements OnInit {
     });
   }
 
-  /**
-   * Paginador
+  /*
+   Paginador
    */
   onPageChange(event: PageEvent): void {
     this.pageSize = Math.min(event.pageSize, 20);
