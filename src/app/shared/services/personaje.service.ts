@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, forkJoin } from 'rxjs';
-import { map, tap, catchError } from 'rxjs/operators';
+import { map, tap, catchError, switchMap } from 'rxjs/operators';
 
 import { Personaje } from '@shared/components/interfaces/info_personajes';
 import { environment } from '@environment/enviroment';
@@ -93,6 +93,27 @@ export class PersonajeService {
       })
     );
   }
+
+  getRandomPersonajes(limit: number): Observable<{ personajes: Personaje[]; total: number }> {
+    return this.http.get<any>(`${environment.urlAPI}`).pipe(
+      switchMap((res) => {
+        const total = res.info.count;
+        const randomIds = Array.from({ length: limit }, () =>
+          Math.floor(Math.random() * total) + 1
+        );
+
+        return this.http.get<any>(`${environment.urlAPI}/${randomIds.join(',')}`).pipe(
+          map((personajes: any | any[]) => {
+            // Si la API devuelve un objeto (1 personaje) se convierte en array
+            const results = Array.isArray(personajes) ? personajes : [personajes];
+            return { personajes: results, total };
+          })
+        );
+      })
+    );
+  }
+
+
   clearCache() {
     this.apiPageCache.clear();
     this.totalCount = 0;

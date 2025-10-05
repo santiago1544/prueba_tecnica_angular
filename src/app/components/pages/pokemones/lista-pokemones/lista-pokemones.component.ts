@@ -33,7 +33,7 @@ export class ListaPokemonesComponent implements OnInit {
       if (query) {
         this.buscarPokemon(query);
       } else {
-        this.cargarPokemones();
+        this.cargarPokemonesRandom();
       }
     });
   }
@@ -67,6 +67,35 @@ export class ListaPokemonesComponent implements OnInit {
       });
     });
   }
+
+    
+  cargarPokemonesRandom(): void {
+  this.pokemonService.getAllPokemonsShuffled().subscribe(data => {
+    this.totalPokemones = data.total;
+
+    // Calcular slice según página actual
+    const offset = this.pageIndex * this.pageSize;
+    const currentPage = data.results.slice(offset, offset + this.pageSize);
+
+    // Hacer requests en paralelo
+    forkJoin(
+      currentPage.map((p: any) => this.pokemonService.getPokemonByUrl(p.url))
+    ).subscribe((pokemons: Pokemon[]) => {
+      this.pokemones = pokemons.map(p => ({
+        id: p.id,
+        name: p.name,
+        sprites: p.sprites,
+        types: p.types,
+        base_experience: p.base_experience,
+        abilities: p.abilities,
+        height: p.height,
+        weight: p.weight,
+        stats: p.stats
+      }));
+    });
+  });
+}
+
 
   buscarPokemon(nombre: string) {
     this.pokemonService.getPokemon(nombre).subscribe((res) => {

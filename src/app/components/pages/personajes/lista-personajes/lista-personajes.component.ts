@@ -38,7 +38,7 @@ export class ListaPersonajesComponent implements OnInit {
       this.loadData();
     });
 
-    this.loadData();
+    this.loadRandomData();
   }
 
     loadData(): void {
@@ -48,6 +48,13 @@ export class ListaPersonajesComponent implements OnInit {
         this.personajes = res.personajes;
         this.totalPersonajes = res.total;
       });
+  }
+
+  loadRandomData(): void {
+    this.personajeService.getRandomPersonajes(this.pageSize).subscribe(res => {
+      this.personajes = res.personajes;
+      this.totalPersonajes = res.total;
+    });
   }
 
   /**
